@@ -37,9 +37,11 @@ jobs:
           push: true
           tags: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
       - name: image-id
+        env: 
+          url: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
         id: image
         run: |
-          echo "image-url={{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          echo "image-url=$url" >> "$GITHUB_OUTPUT"
       
         
           
