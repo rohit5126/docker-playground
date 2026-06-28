@@ -1,7 +1,7 @@
 name: main
 on: 
   push:
-    branches: master
+    branches: actions
 
 jobs:
   build-test:
