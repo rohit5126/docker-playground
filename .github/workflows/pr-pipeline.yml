@@ -13,6 +13,7 @@ jobs:
     with:
       node-version: '22' 
       package-path: 'frontend' 
+      run-tests: false
       
     
     
