@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test-build
-        uses: ./.github/workflows/reusable-build-test.yml
+        uses: ./.github/workflows/reusable-build-test.yml@actions
         with:
           node-version: '22'
           package-path: 'frontend'
