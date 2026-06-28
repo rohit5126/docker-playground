@@ -5,6 +5,9 @@ on:
       image:
         description: "the image name"
         value: ${{ jobs.docker-build.outputs.out2 }}
+      imageid:
+        description: "image i "
+        value: ${{ jobs.docker-build.outputs.out1 }}
     inputs:
       image-name: { required: true, type: string }
       tag: {required: false, default: latest, type: string }
@@ -18,6 +21,7 @@ on:
 jobs:   
   docker-build:
     outputs:
+      out1: ${{ steps.image.outputs.imageid }}
       out2: ${{ steps.image.outputs.image-url }}
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +42,7 @@ jobs:
           tags: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
       - name: image-id
         env: 
-          url: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
+          url: '${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}'
         id: image
         run: |
           echo "image-url=$url" >> "$GITHUB_OUTPUT"
