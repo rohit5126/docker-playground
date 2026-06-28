@@ -3,12 +3,8 @@ on:
   workflow_call: 
     inputs:
       node-version: { required: false, default: '22', type: string }
-      package-path: { required: true,default: 'frontend/', type: string }
+      package-path: { required: true, type: string }
       run_tests: { required: false, default: true, type: boolean }
-  push:
-    branches: [actions]
-    paths: .github/workflows/reusable-build-test.yml
-
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
