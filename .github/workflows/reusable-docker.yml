@@ -1,6 +1,9 @@
 name: docker-reuse
 on:
   workflow_call:
+    outputs:
+      image:
+        value: ${{ jobs.docker-build.outputs.out2 }}
     inputs:
       image-name: { required: true, type: string }
       tag: {required: false, default: latest, type: string }
@@ -8,7 +11,7 @@ on:
     secrets:
       docker_username: { required: true }
       docker_password: { required: true }
-
+  
       
 jobs:   
   docker-build:
