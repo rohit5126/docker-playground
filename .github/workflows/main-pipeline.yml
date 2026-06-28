@@ -22,7 +22,7 @@ jobs:
       docker_password: ${{ secrets.DOCKER_TOKEN }}
   deploy:
      needs: docker
-     runs-on: self-hosted
+     runs-on: ubuntu-latest
      env:
        image: ${{ needs.docker.outputs.image }}
      steps:
