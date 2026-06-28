@@ -3,6 +3,7 @@ on:
   workflow_call:
     outputs:
       image:
+        description: "the image name"
         value: ${{ jobs.docker-build.outputs.out2 }}
     inputs:
       image-name: { required: true, type: string }
@@ -16,7 +17,6 @@ on:
 jobs:   
   docker-build:
     outputs:
-      out1: ${{ steps.build.outputs.imageid }}
       out2: ${{ steps.image.outputs.image-url }}
     runs-on: ubuntu-latest
     steps:
