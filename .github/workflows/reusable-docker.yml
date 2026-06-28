@@ -9,8 +9,12 @@ on:
       docker_username: { required: true }
       docker_password: { required: true }
 
-jobs:
+      
+jobs:   
   docker-build:
+    outputs:
+      out1: ${{ steps.build.outputs.imageid }}
+      out2: ${{ steps.image.outputs.image-url }}
     runs-on: ubuntu-latest
     steps:
       - name: code
@@ -22,9 +26,16 @@ jobs:
           password: ${{ secrets.docker_password }}
 
       - name: docker-build
+        id: build
         uses: docker/build-push-action@v7
         with:
           push: true
           tags: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
+      - name: image-id
+        id: image
+        run: |
+          echo "image-url={{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+      
+        
           
       
