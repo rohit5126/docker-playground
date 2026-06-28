@@ -1,0 +1,35 @@
+name: main
+on: 
+  push:
+    branches: master
+
+jobs:
+  build-test:
+    uses: ./.github/workflows/reusable-build-test.yml
+    with:
+      node-version: '22' 
+      package-path: 'frontend' 
+      run_tests: true
+  docker:
+    needs: build-test
+    uses: ./.github/workflows/reusable-docker.yml
+    with:
+      image-name: devboard-frontend
+      tag: latest
+      docker-name: rohit5126
+    secrets: 
+      docker_username: ${{ vars.DOCKER_USER }}
+      docker_password: ${{ secrets.DOCKER_TOKEN }}
+  deploy:
+     needs: docker
+     runs-on: self-hosted
+     env:
+       image: ${{ needs.docker.outputs.image }}
+     steps:
+       - name: docker-run
+         run: |
+           echo " Prints "Deploying image: $image to production"
+           
+    
+  
+    
