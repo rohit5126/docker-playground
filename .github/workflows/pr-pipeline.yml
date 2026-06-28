@@ -9,11 +9,11 @@ on:
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: test-build
-        uses: ./.github/workflows/reusable-build-test.yml@actions
-        with:
-          node-version: '22'
-          package-path: 'frontend'
+    uses: ./.github/workflows/reusable-build-test.yml
+    with:
+      node-version: '22' 
+      package-path: 'frontend' 
+      
+    
+    
         
