@@ -9,6 +9,7 @@ on:
       image-name: { required: true, type: string }
       tag: {required: false, default: latest, type: string }
       docker-name: { required: true, type: string }
+      context: { required: true, type: string }
     secrets:
       docker_username: { required: true }
       docker_password: { required: true }
@@ -32,6 +33,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v7
         with:
+          context: ${{ inputs.context }}
           push: true
           tags: ${{ inputs.docker-name }}/${{ inputs.image-name }}:${{ inputs.tag }}
       - name: image-id
