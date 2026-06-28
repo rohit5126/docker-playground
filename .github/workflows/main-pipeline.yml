@@ -25,11 +25,11 @@ jobs:
      needs: docker
      runs-on: ubuntu-latest
      env:
-       image: ${{ needs.docker.outputs.image }}
+       out: ${{ needs.docker.outputs.image }}
      steps:
        - name: docker-run
          run: |
-           echo " Prints "Deploying image: $image to production"
+           echo " Prints "Deploying image: $out to production"
            
     
   
