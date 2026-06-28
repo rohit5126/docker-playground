@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize]
   workflow_dispatch:
   push:
+    paths: ./.github/workflows/pr-pipeline.yml
     
 
 jobs:
@@ -13,7 +14,15 @@ jobs:
     with:
       node-version: '22' 
       package-path: 'frontend' 
-      run_tests: false
+      run_tests: true
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: print
+        run: echo " PR checks passed for branch: ${{ github.head_ref }} "
       
     
     
