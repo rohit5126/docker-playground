@@ -1,0 +1,16 @@
+name: pr-pipeline
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test-build
+        uses: ./.github/workflows/reusable-build-test.yml
+        with:
+          node-version: '22'
+          package-path: 'frontend'
