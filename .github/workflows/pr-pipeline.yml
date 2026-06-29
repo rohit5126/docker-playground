@@ -1,6 +1,9 @@
 name: pr-pipeline
 on:
   push:
+  pull_request:
+      branches: [master]
+      types: [opened, synchronize]
 
 jobs:
   build-test-frontend:
