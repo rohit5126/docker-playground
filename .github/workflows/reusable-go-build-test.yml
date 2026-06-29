@@ -8,14 +8,17 @@ on:
       code-path: { required: true, type: string }
     outputs:
       data:
-        value: ${{ jobs.job1.outputs.out1 }}
+        value: ${{ jobs.go-build-test.outputs.out1 }}
 
 jobs:
-  job1:
+  go-build-test:
       runs-on: ubuntu-latest
       outputs:
         out1: ${{ steps.status.outputs.pass }}
       steps:
+        - name: code-setup
+          uses: actions/checkout@v6
+          
         - name: go-steup
           uses: actions/setup-go@v6
           with:
