@@ -1,6 +1,5 @@
 name: pr-pipeline
 on:
-  push:
   pull_request:
       branches: [master]
       types: [opened, synchronize]
@@ -13,7 +12,6 @@ jobs:
       package-path: 'frontend' 
       run_tests: true
   build-test-backend:
-    if: success()
     uses: ./.github/workflows/reusable-go-build-test.yml
     with:
       go-version: '1.23' 
@@ -22,7 +20,7 @@ jobs:
       code-path: backend
       
   job3:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     needs: [build-test-backend,build-test-frontend]
     steps:
       - uses: peter-evans/create-or-update-comment@v5
