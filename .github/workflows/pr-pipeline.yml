@@ -6,14 +6,22 @@ on:
 
 jobs:
   job1:
-    uses: ./.github/workflows/reusable-build-test.yml
+    uses: ./.github/workflows/reusable-node-build-test.yml
     with:
       node-version: '22' 
       package-path: 'frontend' 
       run_tests: true
-
   job2:
-    needs: job1
+    if: success()
+    uses: ./.github/workflows/reusable-go-build-test.yml
+    with:
+      go-version: '1.23' 
+      go-version-file: backend/go.mod
+      cache-dependency-path: backend/go.sum
+      code-path: backend
+      
+  job3:
+    needs: [job1,job2]
     runs-on: ubuntu-latest
     if: success()
     steps:
