@@ -1,7 +1,6 @@
 name: pr-pipeline
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
 
 jobs:
   build-test-frontend:
