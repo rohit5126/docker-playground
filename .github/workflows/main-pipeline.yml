@@ -4,30 +4,43 @@ on:
     branches: actions
 
 jobs:
-  build-test:
-    uses: ./.github/workflows/reusable-build-test.yml
+  build-test-frontend:
+    uses: ./.github/workflows/reusable-node-build-test.yml
     with:
       node-version: '22' 
       package-path: 'frontend' 
       run_tests: true
+  build-test-backend:
+    uses: ./.github/workflows/reusable-go-build-test.yml
+    with:
+      go-version: '1.23' 
+      go-version-file: backend/go.mod
+      cache-dependency-path: backend/go.sum
+      code-path: backend
+      
   docker:
-    needs: build-test
+    needs: [build-test-frontend, build-test-backend]
+    strategy:
+      matrix:
+        repo: [ 'frontend', 'backend' ]
     uses: ./.github/workflows/reusable-docker.yml
     with:
-      image-name: devboard-frontend
+      image-name: devboard-${{ matrix.repo }}
       tag: latest
       docker-name: rohit5126
-      context: frontend/
+      context: ${{ matrix.repo }}
     secrets: 
       docker_username: ${{ vars.DOCKER_USER }}
       docker_password: ${{ secrets.DOCKER_TOKEN }}
+    
+    
   deploy:
-     needs: docker
+     needs: [docker]
      runs-on: ubuntu-latest
      steps:
        - name: docker-run
          run: |
-           echo "Deploying image: ${{ needs.docker.outputs }} to production"
+           echo "both docker images pushed to dokcer hub"
            
  
   
