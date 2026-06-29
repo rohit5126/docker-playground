@@ -36,12 +36,12 @@ jobs:
     
   deploy:
      needs: [docker]
-     runs-on: ubuntu-latest
+     runs-on: self-hosted
      steps:
-       - name: docker-run
-         run: |
-           echo "both docker images pushed to dokcer hub"
-           
+       - name: code
+         uses: actions/checkout@v6
+       - name: docker deploy
+         run: docker compose up
  
   
     
