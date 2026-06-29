@@ -5,13 +5,13 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  job1:
+  build-test-frontend:
     uses: ./.github/workflows/reusable-node-build-test.yml
     with:
       node-version: '22' 
       package-path: 'frontend' 
       run_tests: true
-  job2:
+  build-test-backend:
     if: success()
     uses: ./.github/workflows/reusable-go-build-test.yml
     with:
@@ -21,13 +21,18 @@ jobs:
       code-path: backend
       
   job3:
-    needs: [job1,job2]
-    runs-on: ubuntu-latest
-    if: success()
+    runs-on: ubuntu:latest
+    needs: [build-test-backend,build-test-frontend]
     steps:
-      - name: print
-        run: |
-          echo "PR checks passed for branch: ${{ github.head_ref }}"
+      - uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### Automated Code Analysis Report
+            * **Format check:** Passed for both frontend and backend
+            * **linter status:** Passed for both frontend and backend
+            * **test cases:** Passed for both frontend and backend
+
           
       
     
