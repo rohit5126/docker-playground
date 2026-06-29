@@ -6,15 +6,10 @@ on:
       go-version-file: { required: true, type: string }
       cache-dependency-path: { required: true, type: string }
       code-path: { required: true, type: string }
-    outputs:
-      data:
-        value: ${{ jobs.go-build-test.outputs.out1 }}
-
+  
 jobs:
   go-build-test:
       runs-on: ubuntu-latest
-      outputs:
-        out1: ${{ steps.status.outputs.pass }}
       steps:
         - name: code-setup
           uses: actions/checkout@v6
@@ -35,12 +30,5 @@ jobs:
         - name: testing
           run: go test
           working-directory: ${{ inputs.code-path }}
-
-        - name: status
-          id: status
-          if: success()
-          run: echo "pass='all test cases passed'" >> "$GITHUB_OUTPUT"
-          
-        
         
       
