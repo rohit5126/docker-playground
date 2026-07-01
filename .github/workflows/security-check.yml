@@ -1,0 +1,17 @@
+name: dependency-check
+on: 
+  push: 
+
+jobs:
+  dependecy-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code
+        uses: actions/checkout@v7
+      - id: govulncheck
+        uses: golang/govulncheck-action@v1
+        with:
+           go-version-input: 1.22
+           go-package: ./...
+           work-dir: backend/
+      
