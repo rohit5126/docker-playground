@@ -1,11 +1,19 @@
 name: main
 on:
-  workflow_dispatch: 
+  push:
+    branches: devsecops
 
 jobs:
-  code-quality:
-    uses: ./.github/workflows/code-quality.yml
+  code-quality-frontend:
+    uses: ./.github/workflows/Node-code-quality.yml
     with:
       node-version: 20
       package-path: frontend/package-lock.json
-      code-path: frontend
+      code-path: frontend/
+  code-quality-backend:
+    uses: ./.github/workflows/Go-code-quality.yml
+    with:
+      go-version: '1.23'
+      go-version-file: backend/go.mod
+      cache-dependency-path: backend/go.sum
+      code-path: backend/
