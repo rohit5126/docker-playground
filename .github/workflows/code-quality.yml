@@ -4,6 +4,7 @@ on:
     inputs:
       node-version: { default: '20', type: string }
       package-path: { required: true, type: string }
+      code-path: { required: true, type: string }
 jobs:
   code-quality:
     runs-on: ubuntu-latest
@@ -17,8 +18,8 @@ jobs:
           cache-dependency-path: ${{ inputs.package-path }}
       - name: npm install
         run: npm install
-        working-directory: ${{ inputs.package-path }}
+        working-directory: ${{ inputs.code-path }}
       - name: linting-code
         run: npm run lint
-        working-directory: ${{ inputs.package-path }}
+        working-directory: ${{ inputs.code-path }}
         
