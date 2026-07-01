@@ -30,4 +30,6 @@ jobs:
     with:
       frontend-dockerfile-dir: frontend
       backend-dockerfile-dir: backend
-      
+    secrets: 
+      docker_username: ${{ vars.DOCKER_USER }}
+      docker_password: ${{ secrets.DOCKER_TOKEN }}
