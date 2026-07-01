@@ -53,12 +53,12 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL'
-          output: ${{ matrix.workdir }}-scan-report
+          output: scan-report
       - name: save report to artifacts
         uses: actions/upload-artifact@v4
         with:
           name: image_scan_report
-          path: ${{ matrix.workdir }}-scan-report
+          path: scan-report
           retention-days: 5
           
           
