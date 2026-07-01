@@ -36,15 +36,15 @@ type Task struct {
 }
 
 type Project struct {
-	ID          int     `json:"id"`
-	Name        string  `json:"name"`
-	Description string  `json:"description"`
-	OwnerID     *int    `json:"owner_id"`
-	CreatedAt   string  `json:"created_at"`
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	OwnerID     *int   `json:"owner_id"`
+	CreatedAt   string `json:"created_at"`
 }
 
 func main() {
-	dsn := env("POSTGRES_URL", "postgres://devboard:devboard@postgres:5432/devboard?sslmode=disable")
+	dsn := env("POSTGRES_URL", "postgres://devboard:devboard@localhost:5432/devboard?sslmode=disable")
 
 	var err error
 	db, err = sql.Open("postgres", dsn)
