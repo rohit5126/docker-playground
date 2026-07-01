@@ -4,6 +4,9 @@ on:
     inputs:
       frontend-dockerfile-dir: { required: true, type: string }
       backend-dockerfile-dir: { required: true, type: string }
+    secrets:
+      docker_username: { required: true }
+      docker_password: { required: true }
 
 
 jobs:
