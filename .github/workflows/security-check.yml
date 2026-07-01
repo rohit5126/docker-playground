@@ -3,6 +3,7 @@ on:
   push: 
 permissions:
   contents: read
+  security-events: read
 jobs:
   dependecy-check:
     runs-on: ubuntu-latest
