@@ -4,13 +4,13 @@ on:
     branches: devsecops
 
 jobs:
-  code-quality-frontend:
+  frontend-code-quality:
     uses: ./.github/workflows/Node-code-quality.yml
     with:
       node-version: 20
       package-path: frontend/package-lock.json
       code-path: frontend/
-  code-quality-backend:
+  backend-code-quality:
     uses: ./.github/workflows/Go-code-quality.yml
     with:
       go-version: '1.23'
