@@ -1,6 +1,6 @@
 name: main
 on:
-  workflow_dispatch: 
+  push: 
 
 jobs:
   frontend-code-quality:
@@ -24,4 +24,10 @@ jobs:
     with:
       backend_workdir: backend
       frontend_workdir: frontend
+
+  docker-lint:
+    uses: ./.github/workflows/docker-lint.yml
+    with:
+      frontend-dockerfile-dir: frontend
+      backend-dockerfile-dir: backend
       
