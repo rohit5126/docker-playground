@@ -1,11 +1,11 @@
 name: main
 on:
-  push:
-    branches: devsecops
+  workflow_dispatch: 
 
 jobs:
   code-quality:
     uses: ./.github/workflows/code-quality.yml
     with:
       node-version: 20
-      package-path: frontend
+      package-path: frontend/package-lock.json
+      code-path: frontend
