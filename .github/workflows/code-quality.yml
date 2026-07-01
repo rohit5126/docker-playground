@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: ${{ inputs.node-version }}
           cache-dependency-path: ${{ inputs.package-path }}
-          cache: npm
       - name: npm install
         run: npm install
         working-directory: ${{ inputs.package-path }}
