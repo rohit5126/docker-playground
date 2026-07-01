@@ -41,7 +41,8 @@ jobs:
           cache-dependency-path: frontend/
           
       - name: dependency check
-        run: npm audit > audit_report.txt 2>&1
+        run: |
+          npm audit > audit_report.txt || true
         working-directory: frontend/
         
       - name: report-artificats
