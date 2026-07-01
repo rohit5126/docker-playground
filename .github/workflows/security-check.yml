@@ -8,12 +8,15 @@ jobs:
     steps:
       - name: code
         uses: actions/checkout@v7
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.22'
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
       - id: govulncheck
         uses: golang/govulncheck-action@v1
         with:
            go-version-input: 1.22
            go-package: ./...
            work-dir: backend/
-           cache-dependency-path: backend/go.sum
-           go-version-file: backend/go.mod
-      
