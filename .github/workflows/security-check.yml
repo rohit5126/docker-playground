@@ -1,6 +1,9 @@
 name: dependency-check
 on: 
-  push: 
+  workflow_call:
+    inputs:
+      backend_workdir: { required: true, type: string }
+      frontend_workdir: { required: true, type: string }
 permissions:
   contents: read
 jobs:
@@ -19,7 +22,7 @@ jobs:
         with:
           output-format: sarif
           output-file: govulncheck-results.sarif
-          work-dir: backend/
+          work-dir: ${{ inputs.backend_workdir }}
 
       - name: Upload results to artifacts
         uses: actions/upload-artifact@v4
@@ -38,18 +41,18 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 20
-          cache-dependency-path: frontend/
+          cache-dependency-path: ${{ inputs.frontend_workdir }}
           
       - name: dependency check
         run: |
           npm audit > audit_report.txt || true
-        working-directory: frontend/
+        working-directory: ${{ inputs.frontend_workdir }}
         
       - name: report-artificats
         uses: actions/upload-artifact@v4
         with:
           name: node-vulnerabilities-report
-          path: frontend/audit_report.txt
+          path: ${{ inputs.frontend_workdir}}/audit_report.txt
           retention-days: 7
 
 
