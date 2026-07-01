@@ -2,7 +2,7 @@ name: dependency-check
 on: 
   push: 
 permissions:
-  contents: read
+  contents: write
   security-events: read
 jobs:
   dependecy-check:
