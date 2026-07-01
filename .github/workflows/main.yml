@@ -1,6 +1,7 @@
 name: main
 on:
-  workflow_dispatch: 
+  push:
+    branches: devsecops
 
 jobs:
   code-quality-frontend:
@@ -18,4 +19,10 @@ jobs:
       code-path: backend/
   secret-scanner:
     uses: ./.github/workflows/secret-scanning.yml
-    
+
+  dependency-check:
+    uses: ./.github/workflows/security-check.yml
+    with:
+      backend_workdir: backend
+      frontend_workdir: frontend
+      
