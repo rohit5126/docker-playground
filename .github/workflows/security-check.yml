@@ -5,6 +5,8 @@ on:
 jobs:
   dependecy-check:
     runs-on: ubuntu-latest
+    permissions:
+      repository-projects: read
     steps:
       - name: code
         uses: actions/checkout@v7
