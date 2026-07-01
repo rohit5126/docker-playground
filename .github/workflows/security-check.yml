@@ -18,7 +18,7 @@ jobs:
           cache-dependency-path: backend/go.sum
       - id: govulncheck
         run: |
-          go install golang.org/x/vuln/cmd/govulncheck@latest
+          go install golang.org/x/vuln/cmd/govulncheck@1.1.4
           govulncheck ./...
         working-directory: backend/
         
