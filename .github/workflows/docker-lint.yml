@@ -1,0 +1,14 @@
+name: docker-linter
+on: push
+
+jobs:
+  frontend-docker-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code-checkout
+        uses: actions/checkout@v6
+      - name: Lint Dockerfile using Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: frontend/Dockerfile
+  
