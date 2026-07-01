@@ -4,7 +4,7 @@ on:
 permissions:
   contents: read
 jobs:
-  dependecy-check:
+  Go-dependecy-check:
     runs-on: ubuntu-latest
     permissions:
       repository-projects: read
@@ -13,12 +13,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - name: Set up Go
-        uses: actions/setup-go@v6
-        with:
-          go-version: '1.22'
-          go-version-file: backend/go.mod
-          cache-dependency-path: backend/go.sum
+      
       - name: Run govulncheck and export report
         uses: golang/govulncheck-action@v1
         with:
@@ -32,4 +27,11 @@ jobs:
           name: Go-vulnerabilities-report
           path: govulncheck-results.sarif
           retention-days: 7
+          
+  Node-dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code-checkout
+        uses: actions/checkout@v7
+
 
