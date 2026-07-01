@@ -1,0 +1,11 @@
+name: main
+on:
+  push:
+    branches: devsecops
+
+jobs:
+  code-quality:
+    uses: ./.github/workflows/code-quality.yml
+    with:
+      node-version: 20
+      package-path: frontend
