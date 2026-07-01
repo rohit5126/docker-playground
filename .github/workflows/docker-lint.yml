@@ -1,14 +1,23 @@
 name: docker-linter
-on: push
+on: 
+  workflow_call:
+    inputs:
+      frontend-dockerfile-dir: { required: true, type: string }
+      backend-dockerfile-dir: { required: true, type: string }
+
 
 jobs:
   frontend-docker-lint:
+    strategy:
+      matrix:
+        workdir: [ '${{ inputs.frontend-dockerfile-dir }}', '${{ inputs.backend-dockerfile-dir }}' ]
     runs-on: ubuntu-latest
     steps:
       - name: code-checkout
         uses: actions/checkout@v6
-      - name: Lint Dockerfile using Hadolint
+      - name: Lint Dockerfile using Hadolint for ${{ matrix.workdir }}
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: frontend/Dockerfile
+          dockerfile: ${{ matrix.workdir }}/Dockerfile
+     
   
