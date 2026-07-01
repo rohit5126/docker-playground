@@ -19,4 +19,7 @@ jobs:
       - name: npm install
         run: npm install
         working-directory: ${{ inputs.package-path }}
-      - name: 
+      - name: linting-code
+        run: npm run lint
+        working-directory: ${{ inputs.package-path }}
+        
