@@ -3,7 +3,7 @@ FROM golang:1.22-alpine AS builder
 WORKDIR /app
 
 # Install git (needed for some Go modules)
-RUN apk add --no-cache "git<=2.46"
+RUN apk add --no-cache git=2.45.4-r0
 
 # Cache dependencies
 COPY go.mod go.sum ./
