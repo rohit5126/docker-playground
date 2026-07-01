@@ -1,4 +1,4 @@
-name: code-quality
+name: Node-code-quality
 on:
   workflow_call:
     inputs:
