@@ -32,6 +32,8 @@ jobs:
       matrix:
         workdir: [ '${{ inputs.frontend-dockerfile-dir }}', '${{ inputs.backend-dockerfile-dir }}' ]
     steps:
+      - name: code-checkout
+        uses: actions/checkout@v6
       - name: docker login
         uses: docker/login-action@v4
         with:
