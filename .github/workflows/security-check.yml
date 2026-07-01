@@ -14,4 +14,6 @@ jobs:
            go-version-input: 1.22
            go-package: ./...
            work-dir: backend/
+           cache-dependency-path: backend/go.sum
+           go-version-file: backend/go.mod
       
