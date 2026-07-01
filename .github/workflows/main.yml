@@ -17,3 +17,6 @@ jobs:
       go-version-file: backend/go.mod
       cache-dependency-path: backend/go.sum
       code-path: backend/
+  secret-scanner:
+    uses: ./.github/workflows/secret-scanning.yml
+    
