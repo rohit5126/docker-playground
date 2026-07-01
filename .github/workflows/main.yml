@@ -1,6 +1,7 @@
 name: main
 on:
-  workflow_dispatch: 
+  push:
+    branches: devsecops
 
 jobs:
   code-quality:
