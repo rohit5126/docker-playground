@@ -59,6 +59,10 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
 
+  OWASP-ZAP-scan:
+    needs: deploy-app
+    uses: ./.github/workflows/OWASP_DAST.yml
+    secrets: inherit
   
       
   
