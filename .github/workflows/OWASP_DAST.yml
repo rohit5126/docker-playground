@@ -13,7 +13,7 @@ jobs:
           timeout 60s sh -c 'until curl -s http://13.51.6.154:8080 > /dev/null; do sleep 2; done'
 
       - name: OWASP ZAP Baseline scan
-        uses: zaproxy/action-basline@v0.14.0
+        uses: zaproxy/action-baseline@v0.14.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target: 'http://13.51.6.154:8080'
