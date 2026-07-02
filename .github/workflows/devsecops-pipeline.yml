@@ -1,6 +1,6 @@
-name: main
+name: devsecops-pipeline
 on:
-  push: 
+  workflow_dispatch:  
 jobs:
   frontend-code-quality:
     uses: ./.github/workflows/Node-code-quality.yml
@@ -58,5 +58,7 @@ jobs:
     needs: [push-to-docker-Hub]
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
+
+  
       
   
