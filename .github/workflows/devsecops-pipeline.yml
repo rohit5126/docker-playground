@@ -1,6 +1,6 @@
 name: devsecops-pipeline
 on:
-  workflow_dispatch:  
+  push: 
 jobs:
   frontend-code-quality:
     uses: ./.github/workflows/Node-code-quality.yml
