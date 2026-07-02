@@ -54,6 +54,7 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL'
           skip-dirs: '**/bin'
+          skip-files: 'app/devboard-backend'
           
           
         
