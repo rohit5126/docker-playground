@@ -25,7 +25,8 @@ jobs:
       backend_workdir: backend
       frontend_workdir: frontend
 
-  docker-lint:
+  docker-lint-scan:
+    needs: [ dependency-check,secret-scanner, backend-code-quality, frontend-code-quality ]
     uses: ./.github/workflows/docker-lint.yml
     with:
       frontend-dockerfile-dir: frontend
