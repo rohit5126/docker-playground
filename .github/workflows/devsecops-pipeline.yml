@@ -1,6 +1,6 @@
 name: main
 on:
-  push: 
+  workflow_dispatch: 
 
 jobs:
   frontend-code-quality:
@@ -42,4 +42,8 @@ jobs:
       SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
     secrets: 
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  push-to-docker-Hub:
+    needs: [docker-Sonar-Scan]
+    
+    
   
