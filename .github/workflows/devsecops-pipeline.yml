@@ -52,6 +52,12 @@ jobs:
     secrets: 
       docker_username: ${{ vars.DOCKER_USER }}
       docker_password: ${{ secrets.DOCKER_TOKEN }}
+
+## ______Deploy- CD______
+
+  deploy-app:
+    needs: [push-to-docker-Hub]
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
       
-    
   
