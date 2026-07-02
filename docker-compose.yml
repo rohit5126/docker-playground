@@ -33,7 +33,7 @@ services:
 
   backend:
     container_name: backend
-    build: ./backend
+    image: rohit5126/devboard-backend:latest
     environment:
       PORT: "${BACKEND_PORT}"
       # Built from the Postgres vars above so the credentials live in one place.
@@ -48,7 +48,7 @@ services:
 
   frontend:
     container_name: devboard-frontend
-    build: ./frontend
+    image: rohit5126/devboard-frontend:latest
     depends_on:
       - backend
     networks:
