@@ -22,4 +22,7 @@ jobs:
       - name: linting-code
         run: npm run lint
         working-directory: ${{ inputs.code-path }}
+      - name: node test
+        run: npm run test
+        working-directory: ${{ inputs.code-path }} 
         
