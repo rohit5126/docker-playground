@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.docker_password }}
           
       - name: Docker build and push
-        uses: docker/build-push-actions@v7
+        uses: docker/build-push-action@v7
         with:
           context: ${{ matrix.workdir }}
           push: true
