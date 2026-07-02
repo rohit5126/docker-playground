@@ -2,8 +2,9 @@ name: Sonar-Scan
 on: 
   workflow_call:
     inputs:
-      SONAR_TOKEN: { required: true, type: string }
       SONAR_HOST_URL: { required: true,type: string }
+    secrets:
+      SONAR_TOKEN: { required: true }
       
 
 jobs:
