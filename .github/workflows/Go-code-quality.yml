@@ -24,6 +24,9 @@ jobs:
       - name: run vet
         run: go vet main.go
         working-directory: ${{ inputs.code-path }}
+      - name: Go test
+        run: go test
+        working-directory: ${{ inputs.code-path }} 
         
    
    
