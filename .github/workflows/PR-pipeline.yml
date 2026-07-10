@@ -46,7 +46,7 @@ jobs:
       - uses: mshick/add-pr-comment@v3
         with:
           message: |
-            ✅ ### All CI Checks Completed Successfully
+            ### All CI Checks Completed Successfully
               **All automated validation steps for this pull request have passed.**
 
               **Completed checks include:**
@@ -54,8 +54,9 @@ jobs:
               * Code quality analysis (Frontend & Backend)
               * Secret detection scan
               * Dependency vulnerability assessment
+              * Vulnerbility reports created for frontend and backend
               * Docker build and lint validation
 
-            This pull request meets the required quality and security standards and is ready for review and merge.
+            **This pull request meets the required quality and security standards and is ready for review and merge.**
 
 
