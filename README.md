@@ -3,7 +3,7 @@
 This is the same DevBoard UI as the `master` branch, but now the data comes
 from a **real backend** instead of fake in-memory data.
 
-Three pieces talk to each other:
+Three pieces talk to each other in the app:
 
 ```
 browser  →  frontend (React)  →  backend (Go API)  →  database (Postgres)
