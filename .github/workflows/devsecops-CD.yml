@@ -1,6 +1,9 @@
 name: Devsecops-deploy.yml
 on:
-  push: 
+  workflow_run:
+    workflows: [merge]
+    types: completed
+    
 jobs:
   deploy-app:
     uses: ./.github/workflows/deploy.yml
